@@ -37,7 +37,12 @@ jobs:
         git clone --depth=1 https://github.com/nanchuci/Padavan-KVR.git /opt/rt-n56u
         cd /opt/rt-n56u/toolchain-mipsel
         sh dl_toolchain.sh
-        mkdir -p /opt/images/
+        mkdir -p /opt/images/    
+    - name: Set Golang
+      run: |   
+        cd /opt/hostedtoolcache/go
+        rm -rf /opt/hostedtoolcache/go/1.14.14
+        mv 1.15.15 1.14.26
     - name: Build Firmware
       env:
         TNAME: MSG1500-7615
