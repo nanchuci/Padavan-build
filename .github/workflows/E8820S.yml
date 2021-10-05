@@ -1,5 +1,5 @@
 #修改TNAME: K2P-5.0 中的K2P-5.0为你需要编译的型号，注意名称要与configs/templates/目录下的名字相同
-name: Build msg1500-7615 Padavan
+name: Build e8820s Padavan
 
 on:
   workflow_dispatch:
@@ -38,6 +38,11 @@ jobs:
         cd /opt/rt-n56u/toolchain-mipsel
         sh dl_toolchain.sh
         mkdir -p /opt/images/
+    - name: Set Golang
+      run: |   
+        cd /opt/hostedtoolcache/go
+        rm -rf /opt/hostedtoolcache/go/1.14.14
+        mv 1.15.15 1.14.26
     - name: Build Firmware
       env:
         TNAME: ZTE_E8820S
