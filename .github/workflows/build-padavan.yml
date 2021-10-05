@@ -169,11 +169,9 @@ jobs:
       uses: actions/upload-artifact@master
       if: always()
       with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: /opt/images/*.trx
+        name: Padavan-packages
+        path: /opt/images/*.trx
         tag: Padavan_MSG1500-7615
-        overwrite: true
-        file_glob: true
     - name: Upload firmware to cowtransfer
       if: steps.organize.outputs.status == 'success' && github.event.inputs.uploadcow == 'true'
       run: |
