@@ -7,7 +7,7 @@ on:
       branch:
         description: 'padavan git branch'
         required: true
-        default: 'main'
+        default: 'master'
       uploadcow:
         description: 'whether to upload firmware to cowtransfer'
         required: true
@@ -23,26 +23,26 @@ jobs:
 
     steps:
     - name: Checkout
-      uses: actions/checkout@main
+      uses: actions/checkout@master
     - name: Initialization environment
       env:
         DEBIAN_FRONTEND: noninteractive
       run: |
         sudo apt-get update
-        sudo apt-get -y install unzip libtool-bin curl cmake gperf gawk flex bison nano xxd fakeroot kmod \
+        sudo apt-get -y install unzip libtool-bin curl cmake gperf gawk flex bison nano xxd fakeroot \
         cpio git python-docutils gettext automake autopoint texinfo build-essential help2man \
-        pkg-config zlib1g-dev libgmp3-dev libmpc-dev libmpfr-dev libncurses5-dev libltdl-dev wget libc-dev-bin
+        pkg-config zlib1g-dev libgmp3-dev libmpc-dev libmpfr-dev libncurses5-dev libltdl-dev wget gcc-multilib
     - name: Clone source code
       run: |
         git clone --depth=1 https://github.com/nanchuci/Padavan-KVR.git /opt/rt-n56u
         cd /opt/rt-n56u/toolchain-mipsel
         sh dl_toolchain.sh
-        mkdir -p /opt/images/    
+        mkdir -p /opt/images/
     - name: Set Golang
       run: |   
         cd /opt/hostedtoolcache/go
-        rm -rf /opt/hostedtoolcache/go/1.14.14
-        mv 1.15.15 1.14.26
+        rm -rf /opt/hostedtoolcache/go/1.14.22
+        mv 1.15.15 1.14.22
     - name: Build Firmware
       env:
         TNAME: MSG1500-7615
@@ -138,8 +138,8 @@ jobs:
         echo "CONFIG_FIRMWARE_INCLUDE_CADDY=n" >> .config #在线文件管理服务
         echo "CONFIG_FIRMWARE_INCLUDE_CADDYBIN=n" >> .config #集成caddu执行文件，此文件有13M,请注意固件大小。如果不集成，会从网上下载下来执行，不影响正常使用
         #
-        echo "CONFIG_FIRMWARE_INCLUDE_WYY=y" >> .config #网易云解锁
-        echo "CONFIG_FIRMWARE_INCLUDE_WYYBIN=y" >> .config #网易云解锁GO版本执行文件（4M多）注意固件超大小,不集成会自动下载
+        echo "CONFIG_FIRMWARE_INCLUDE_WYY=n" >> .config #网易云解锁
+        echo "CONFIG_FIRMWARE_INCLUDE_WYYBIN=n" >> .config #网易云解锁GO版本执行文件（4M多）注意固件超大小,不集成会自动下载
         echo "CONFIG_FIRMWARE_INCLUDE_TRANSMISSION=y" >> .config #集成远程下载
         echo "CONFIG_FIRMWARE_INCLUDE_TRANSMISSION_WEB_CONTROL=y" >> .config #集成远程下载的配置网页
         echo "CONFIG_FIRMWARE_INCLUDE_ARIA=y" >> .config #Aria
@@ -149,7 +149,7 @@ jobs:
         #
         echo "CONFIG_FIRMWARE_INCLUDE_OPENVPN=y" >> .config #openvpn
         #校园网相关开始
-        echo "CONFIG_FIRMWARE_INCLUDE_MENTOHUST=y" >> .config #MENTOHUST
+        echo "CONFIG_FIRMWARE_INCLUDE_MENTOHUST=n" >> .config #MENTOHUST
         echo "CONFIG_FIRMWARE_INCLUDE_SCUTCLIENT=n" >> .config #SCUTCLIENT
         echo "CONFIG_FIRMWARE_INCLUDE_DOGCOM=n" >> .config  #去除用于 Drcom 的工具
         echo "CONFIG_FIRMWARE_INCLUDE_MINIEAP=n" >> .config  #去除可用于锐捷的 eap 客户端
@@ -166,11 +166,14 @@ jobs:
         sudo ./build_firmware_modify $TNAME 0
         sudo mv -f images/*.trx /opt/images/
     - name : Upload packages
-      uses: actions/upload-artifact@main
+      uses: actions/upload-artifact@master
       if: always()
       with:
-        name: Padavan-packages
-        path: /opt/images
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: /opt/images/*.trx
+        tag: Padavan_MSG1500-7615
+        overwrite: true
+        file_glob: true
     - name: Upload firmware to cowtransfer
       if: steps.organize.outputs.status == 'success' && github.event.inputs.uploadcow == 'true'
       run: |
