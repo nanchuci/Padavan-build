@@ -219,8 +219,8 @@ jobs:
         echo "CONFIG_FIRMWARE_INCLUDE_DUMP1090=y" >> .config
         ###
         echo "CONFIG_FIRMWARE_INCLUDE_NVPPROXY=y" >> .config ### NVPPROXY
-        echo "CONFIG_FIRMWARE_INCLUDE_NPC=y" >> .config      ### NPC
-        echo "CONFIG_FIRMWARE_INCLUDE_MTKIAPPD=y" >> .config      ### MTKIAPPD
+        echo "CONFIG_FIRMWARE_INCLUDE_NPC=n" >> .config      ### NPC
+        echo "CONFIG_FIRMWARE_INCLUDE_MTKIAPPD=n" >> .config      ### MTKIAPPD
         #校园网相关结束
         #########################################################################################
         #自定义添加其它功能请参考源码configs/templates/目录下的config文件。按照上面的格式添加即可
