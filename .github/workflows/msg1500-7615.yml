@@ -47,17 +47,13 @@ jobs:
       env:
         TNAME: MSG1500-7615
       run: |
-        cwd=`pwd`
-        CONFIG_TOOLCHAIN_DIR=${cwd//\//\\\/}\\/toolchain-mipsel
         cd /opt/rt-n56u/trunk
-        for m in $TNAME;
-        do
-        if [ ! -f configs/templates/$m.config ] ; then
-        echo "configs/templates/$m.config not found "
+        if [ ! -f configs/templates/$TNAME.config ] ; then
+        echo "configs/templates/$TNAME.config not found "
         exit 1
         fi
-        cp -f configs/templates/$m.config .config
-        sed -i 's/CONFIG_FIRMWARE_INCLUDE_OPENSSL_EXE=n/CONFIG_FIRMWARE_INCLUDE_OPENSSL_EXE=y/g' .config 
+        cp -f configs/templates/$TNAME.config .config
+        sed -i 's/CONFIG_FIRMWARE_INCLUDE_OPENSSL_EXE=n/CONFIG_FIRMWARE_INCLUDE_OPENSSL_EXE=y/g' .config
         ################################################################################################
         #因不同型号配置功能不一样，所以先把配置项删除，如果你自己要添加其他的，也要写上删除这一条，切记！！！
         ################################################################################################
@@ -140,7 +136,7 @@ jobs:
         sed -i '/CONFIG_FIRMWARE_INCLUDE_NVPPROXY/d' .config ### NVPPROXY
         sed -i '/CONFIG_FIRMWARE_INCLUDE_NPC/d' .config      ### NPC
         sed -i '/CONFIG_FIRMWARE_INCLUDE_MTKIAPPD/d' .config      ### MTKIAPPD   
-        sed -i 's/CONFIG_FIRMWARE_INCLUDE_OPENSSL_EXE=n/CONFIG_FIRMWARE_INCLUDE_OPENSSL_EXE=y/g' .config    
+        sed -i 's/CONFIG_FIRMWARE_INCLUDE_OPENSSL_EXE=n/CONFIG_FIRMWARE_INCLUDE_OPENSSL_EXE=y/g' .config
         ######################################################################
         #以下选项是定义你需要的功能（y=集成,n=忽略），重新写入到.config文件
         ######################################################################
@@ -232,20 +228,15 @@ jobs:
         #sed -i '/自定义项/d' .config
         #echo "自定义项=y" >> .config
         #########################################################################################
-        sudo ./clear_tree_simple
-        sudo ./build_firmware_modify $m 0
+        sudo ./clear_tree
+        sudo ./build_firmware_modify $TNAME 0
         sudo mv -f images/*.trx /opt/images/
-        done
-    - name: Upload binaries to release
-      uses: svenstaro/upload-release-action@v1-release
     - name : Upload packages
       uses: actions/upload-artifact@master
+      if: always()
       with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: /opt/images/*.trx
-        tag: Padavan_MSG1500-KVR
-        overwrite: true
-        file_glob: true
+        name: Padavan-MSG1500-KVR
+        path: /opt/images
 
     - name: Upload firmware to cowtransfer
       if: steps.organize.outputs.status == 'success' && github.event.inputs.uploadcow == 'true'
