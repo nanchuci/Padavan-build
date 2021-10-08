@@ -153,8 +153,8 @@ jobs:
         echo "CONFIG_FIRMWARE_INCLUDE_NAPT66=y" >> .config   #napt66是北邮学生开发IPV6支持较旧内核的Linux
         echo "CONFIG_FIRMWARE_INCLUDE_OPENSSL_EXE=y" >> .config #openssl_exe 自动生成证书服务
         #网易云音乐
-        echo "CONFIG_FIRMWARE_INCLUDE_WYY=y" >> .config      #网易云解锁
-        echo "CONFIG_FIRMWARE_INCLUDE_WYYBIN=y" >> .config   #网易云解锁GO版本执行文件（4M多）不集成会自动下载
+        echo "CONFIG_FIRMWARE_INCLUDE_WYY=n" >> .config      #网易云解锁
+        echo "CONFIG_FIRMWARE_INCLUDE_WYYBIN=n" >> .config   #网易云解锁GO版本执行文件（4M多）不集成会自动下载
         #穿透服务
         echo "CONFIG_FIRMWARE_INCLUDE_ALIDDNS=y" >> .config  #阿里DDNS
         echo "CONFIG_FIRMWARE_INCLUDE_FRPC=y" >> .config     #内网穿透frpc
