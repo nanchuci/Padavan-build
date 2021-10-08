@@ -57,104 +57,170 @@ jobs:
         ################################################################################################
         #因不同型号配置功能不一样，所以先把配置项删除，如果你自己要添加其他的，也要写上删除这一条，切记！！！
         ################################################################################################
-        sed -i '/CONFIG_FIRMWARE_INCLUDE_SOFTETHERVPN_SERVER/d' .config #删除配置项SOFTETHERVPN
-        sed -i '/CONFIG_FIRMWARE_INCLUDE_SOFTETHERVPN_CLIENT/d' .config #删除配置项SOFTETHERVPN
-        sed -i '/CONFIG_FIRMWARE_INCLUDE_SOFTETHERVPN_CMD/d' .config #删除配置项SOFTETHERVPN   
-        sed -i '/CONFIG_FIRMWARE_INCLUDE_SHADOWSOCKS/d' .config #删除配置项SS plus+
-        sed -i '/CONFIG_FIRMWARE_INCLUDE_SSSERVER/d' .config #删除配置项SS server
-        sed -i '/CONFIG_FIRMWARE_INCLUDE_DNSFORWARDER/d' .config #删除配置项DNSFORWARDER
-        sed -i '/CONFIG_FIRMWARE_INCLUDE_ADBYBY/d' .config #删除配置项adbyby plus+
-        sed -i '/CONFIG_FIRMWARE_INCLUDE_FRPC/d' .config #删除配置项adbyby plus+
-        sed -i '/CONFIG_FIRMWARE_INCLUDE_FRPS/d' .config #删除配置项adbyby plus+
-        sed -i '/CONFIG_FIRMWARE_INCLUDE_TUNSAFE/d' .config #删除配置项adbyby plus+
-        sed -i '/CONFIG_FIRMWARE_INCLUDE_FRPC/d' .config #删除配置项内网穿透FRPC
-        sed -i '/CONFIG_FIRMWARE_INCLUDE_FRPS/d' .config #删除配置项内网穿透FRPS
-        sed -i '/CONFIG_FIRMWARE_INCLUDE_TUNSAFE/d' .config #删除配置项TUNSAFE
-        sed -i '/CONFIG_FIRMWARE_INCLUDE_ALIDDNS/d' .config #删除配置项阿里DDNS
-        sed -i '/CONFIG_FIRMWARE_INCLUDE_TRANSMISSION/d' .config #删除配置项TRANSMISSION
-        sed -i '/CONFIG_FIRMWARE_INCLUDE_TRANSMISSION_WEB_CONTROL/d' .config #删除配置项TRANSMISSION_WEB_CONTROL
-        sed -i '/CONFIG_FIRMWARE_INCLUDE_ARIA/d' .config #删除配置项Aria
-        sed -i '/CONFIG_FIRMWARE_INCLUDE_ARIA_WEB_CONTROL/d' .config #删除配置项Aria的网页配置
-        sed -i '/CONFIG_FIRMWARE_INCLUDE_SERIAL/d' .config #删除配置项
-        sed -i '/CONFIG_FIRMWARE_INCLUDE_AUDIO/d' .config #删除配置项
-        sed -i '/CONFIG_FIRMWARE_INCLUDE_TTYD/d' .config #删除配置项
-        sed -i '/CONFIG_FIRMWARE_INCLUDE_XUPNPD/d' .config #删除用于 IPTV 的 XUPNP配置项
-        sed -i '/CONFIG_FIRMWARE_INCLUDE_DOGCOM/d' .config #删除用于 Drcom 的工具配置项
-        sed -i '/CONFIG_FIRMWARE_INCLUDE_MINIEAP/d' .config #删除可用于锐捷的 eap 客户端配置项
-        sed -i '/CONFIG_FIRMWARE_INCLUDE_NJIT_CLIENT/d' .config #删除南工网络客户端配置项
-        sed -i '/CONFIG_FIRMWARE_INCLUDE_CLOUDFLAREDDNS/d' .config #删除配置项CloudFlareDDNS
-        sed -i '/CONFIG_FIRMWARE_INCLUDE_SMARTDNS/d' .config
-        sed -i '/CONFIG_FIRMWARE_INCLUDE_SRELAY/d' .config
-        sed -i '/CONFIG_FIRMWARE_INCLUDE_KUMASOCKS/d' .config
-        sed -i '/CONFIG_FIRMWARE_INCLUDE_IPT2SOCKS/d' .config
-        sed -i '/CONFIG_FIRMWARE_INCLUDE_MICROSOCKS/d' .config
-        sed -i '/CONFIG_FIRMWARE_INCLUDE_OPENVPN/d' .config
-        #校园网相关开始
-        sed -i '/CONFIG_FIRMWARE_INCLUDE_MENTOHUST/d' .config #删除配置项MENTOHUST
-        sed -i '/CONFIG_FIRMWARE_INCLUDE_SCUTCLIENT/d' .config #删除配置项SCUTCLIENT
-        sed -i '/CONFIG_FIRMWARE_INCLUDE_NAPT66/d' .config
-        sed -i '/CONFIG_FIRMWARE_INCLUDE_NJIT_CLIENT/d' .config
-        sed -i '/CONFIG_FIRMWARE_INCLUDE_MINIEAP/d' .config
-        sed -i '/CONFIG_FIRMWARE_INCLUDE_DOGCOM/d' .config
-        #校园网相关结束
-        sed -i 's/CONFIG_FIRMWARE_INCLUDE_OPENSSL_EXE=n/CONFIG_FIRMWARE_INCLUDE_OPENSSL_EXE=y/g' .config
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_CURL/d' .config     ### 利用URL语法在命令行下工作的文件传输工具
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_HTOP/d' .config     ### HTOP 类top进程查看工具
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_TTYD/d' .config     ### 浏览器的web shell工具
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_NANO/d' .config     ### NANO 文本编辑小工具
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_IPERF3/d' .config   ### IPERF3 测速工具
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_VLMCSD/d' .config   ### VLMCSD（KMS激活服务器）
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_LRZSZ/d' .config    ### LRZSZ，linux系统中类FTP的软件。
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_MTR/d' .config      ### MTR，网络分析工具。
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_NAPT66/d' .config   ### NAPT66是北邮学生开发的
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_OPENSSL_EXE/d' .config ### openssl_exe 自动生成证书服务
+        ###网易云音乐
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_WYY/d' .config      ###网易云解锁
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_WYYBIN/d' .config   ###网易云解锁GO版本执行文
+        ###穿透服务
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_ALIDDNS/d' .config    ### 阿里DDNS
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_FRPC/d' .config       ### 内网穿透FRPC
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_FRPS/d' .config       ### 内网穿透FRPS
+        sed -i '/CONFIG_FIRMIMARE_INCLUDE_XUPNPD/d' .config    ### IPTV
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_ZEROTIER/d' .config   ###删除配置项ZEROTIER
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_WIREGUARD-GO/d' .config    ### WIREGUARD-GO
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_WIREGUARD-TOOLS/d' .config   ###删除配置项WIREGUARD-TOOLS
+        ###去广告
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_IPT2SOCKS/d' .config   ### TPT2SOCKS
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_ADBYBY/d' .config      ### 广告过滤，adbyby plus+
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_KOOLPROXY/d' .config   ### 广告过滤，koolproxy
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_ADGUARDHOME/d' .config ### 广告过滤，adguardhome
+        #USB相关、下载软件
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_QOS/d' .config
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_SMBD/d' .config            ### smaba和WINS服务
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_SMBD36/d' .config          ### 升级samba3为smaba3.6
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_FTPD/d' .config            ### FTP服务器
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_CADDY/d' .config           ### 在线文件管理服务
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_CADDYBIN/d' .config        ### 集成caddy执行文件
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_TRANSMISSION/d' .config    ### transmission服务~1.5M
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_TRANSMISSION_WEB_CONTROL/d' .config ### transmission网页端~0.8M
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_ARIA/d' .config                     ### aria2服务~3.5M
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_ARIA_WEB_CONTROL/d' .config         ### aria网页端~0.7M
+        #DNS加速服务
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_SMARTDNS/d' .config     ### smartdns，解析加速
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_SMARTDNSBIN/d' .config  ### smartdns执行文件，不集成会从网上下载
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_DNSFORWARDER/d' .config ###dnsforwarder
+        #科学上网
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_SHADOWSOCKS/d' .config ###SS plus+ ,客户端
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_MICROSOCKS/d' .config  ###microsocks，sock5代理软件
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_SSSERVER/d' .config    ###SS server,服务端
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_V2RAY/d' .config       ###v2ray 执行文件，不集成会从网上下载
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_XRAY/d' .config        ###XRAY
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_TROJAN/d' .config      ###trojan执行文件，不集成会从网上下载
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_3PROXY/d' .config      ###3PROXY,服务      
+        #校园网相关
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_MENTOHUST/d' .config   ### 校园网相关 MENTOHUST
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_SCUTCLIENT/d' .config  ### 校园网相关 SCUTCLIENT
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_MINIEAP/d' .config     ### 校园网相关 MINIEAP
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_NJIT_CLIENT/d' .config ### 校园网相关 NJIT_CLIENT
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_GDUT_DRCOM/d' .config  ### 校园网相关 GDUT_DRCOM
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_DOGCOM/d' .config      ### 校园网相关 DOGCOM
+        #其他服务
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_SOFTETHERVPN_SERVER/d' .config ### SOFTETHERVPN_SERVER
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_SOFTETHERVPN_CLIENT/d' .config ### SOFTETHERVPN_CLIENT
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_SOFTETHERVPN_CMD/d' .config    ### SOFTETHERVPN_CMD
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_TUNSAFE/d' .config             ### tunsafe vpn
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_KUMASOCKS/d' .config           ### kumasocks，可以不集成
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_SOCAT/d' .config               ### Socket CAT
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_SRELAY/d' .config              ### srelay，可以不集成
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_RPL2TP/d' .config
+        #附加模块
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_HID/d' .config #USB-硬盘模块
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_CIFS/d' .config #CIFS(SMB)客户
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_U2EC/d' .config #USB以太网打印机守护进程
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_WINS/d' .config #WINS服务器~0.4mb
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_SMBD_SYSLOG/d' .config #SMB和WINS服务器
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_DROPBEAR_FAST_CODE/d' .config #使Dropbear对称密码和散列更快
+        #电视棒
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_RTL_SDR/d' .config  ### RTL_SDR
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_DUMP1090/d' .config ### DUMP1090
+        ####
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_NVPPROXY/d' .config ### NVPPROXY
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_NPC/d' .config      ### NPC
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_MTKIAPPD/d' .config      ### MTKIAPPD   
+        sed -i 's/CONFIG_FIRMWARE_INCLUDE_OPENSSL_EXE=n/CONFIG_FIRMWARE_INCLUDE_OPENSSL_EXE=y/g' .config    
         ######################################################################
         #以下选项是定义你需要的功能（y=集成,n=忽略），重新写入到.config文件
         ######################################################################
-        echo "CONFIG_FIRMWARE_INCLUDE_SOFTETHERVPN_SERVER=n" >> .config #SOFTETHERVPN
-        echo "CONFIG_FIRMWARE_INCLUDE_SOFTETHERVPN_CLIENT=n" >> .config #SOFTETHERVPN
-        echo "CONFIG_FIRMWARE_INCLUDE_SOFTETHERVPN_CMD=n" >> .config #SOFTETHERVPN
-        #科学相关
-        echo "CONFIG_FIRMWARE_INCLUDE_SHADOWSOCKS=y" >> .config #SS plus+
-        echo "CONFIG_FIRMWARE_INCLUDE_V2RAY=n" >> .config #集成v2ray执行文件（3.8M左右)
-        echo "CONFIG_FIRMWARE_INCLUDE_XRAY=y" >> .config #集成xray执行文件(5.6M左右)，可以代替v2ray，注：如果闪存太小不够还是建议使用v2ray
-        echo "CONFIG_FIRMWARE_INCLUDE_TROJAN=y" >> .config #集成trojan执行文件(1.1M左右)
-        echo "CONFIG_FIRMWARE_INCLUDE_SSOBFS=y" >> .config # simple-obfs混淆插件
-        echo "CONFIG_FIRMWARE_INCLUDE_SSSERVER=n" >> .config #SS server
-        echo "CONFIG_FIRMWARE_INCLUDE_KUMASOCKS=y" >> .config #socks5
-        #
+        #系统相关
+        echo "CONFIG_FIRMWARE_INCLUDE_HTTPS=y" >> .config    #路由器https访问
+        echo "CONFIG_FIRMWARE_INCLUDE_CURL=y" >> .config     #利用URL语法在命令行与文件传输工具
+        echo "CONFIG_FIRMWARE_INCLUDE_HTOP=n" >> .config     #是Linux系统一个互动的进程查看器更加人性化。
+        echo "CONFIG_FIRMWARE_INCLUDE_TTYD=y" >> .config     #基于浏览器的web shell工具（最好集成）
+        echo "CONFIG_FIRMWARE_INCLUDE_NANO=y" >> .config     #nano是一个小型好用的文本编辑器
+        echo "CONFIG_FIRMWARE_INCLUDE_IPERF3=y" >> .config   #iperf3是一个网络速度测试工具,支持多协议
+        echo "CONFIG_FIRMWARE_INCLUDE_VLMCSD=y" >> .config   #KMS激活服务器，（按需求集成）
+        echo "CONFIG_FIRMWARE_INCLUDE_LRZSZ=y" >> .config    #lrzsz是一款在linux里可代替ftp上传和下载的程序
+        echo "CONFIG_FIRMWARE_INCLUDE_MTR=y" >> .config      #MTR是一款非常好用的网络分析工具
+        echo "CONFIG_FIRMWARE_INCLUDE_NAPT66=y" >> .config   #napt66是北邮学生开发IPV6支持较旧内核的Linux
+        echo "CONFIG_FIRMWARE_INCLUDE_OPENSSL_EXE=y" >> .config #openssl_exe 自动生成证书服务
+        #网易云音乐
+        echo "CONFIG_FIRMWARE_INCLUDE_WYY=y" >> .config      #网易云解锁
+        echo "CONFIG_FIRMWARE_INCLUDE_WYYBIN=y" >> .config   #网易云解锁GO版本执行文件（4M多）不集成会自动下载
+        #穿透服务
+        echo "CONFIG_FIRMWARE_INCLUDE_ALIDDNS=y" >> .config  #阿里DDNS
+        echo "CONFIG_FIRMWARE_INCLUDE_FRPC=y" >> .config     #内网穿透frpc
+        echo "CONFIG_FIRMWARE_INCLUDE_FRPS=n" >> .config     #内网穿透frps
+        echo "CONFIG_FIRMIMARE_INCLUDE_XUPNPD=y" >> .config  #XUPNPD IPTV0.3M
+        echo "CONFIG_FIRMWARE_INCLUDE_ZEROTIER=y" >> .config #zerotier大小1.3M
+        echo "CONFIG_FIRMWARE_INCLUDE_WIREGUARD-GO=n" >> .config  #WIREGUARD-GO
+        echo "CONFIG_FIRMWARE_INCLUDE_WIREGUARD-TOOLS=n" >> .config #WIREGUARD-TOOLS
+        #去广告
         echo "CONFIG_FIRMWARE_INCLUDE_IPT2SOCKS=y" >> .config
-        echo "CONFIG_FIRMWARE_INCLUDE_MICROSOCKS=y" >> .config
-        echo "CONFIG_FIRMWARE_INCLUDE_SRELAY=n" >> .config #可以不集成
-        echo "CONFIG_FIRMWARE_INCLUDE_TUNSAFE=n" >> .config #TUNSAFE
-        echo "CONFIG_FIRMWARE_INCLUDE_DNSFORWARDER=n" >> .config #DNSFORWARDER
-        #
-        echo "CONFIG_FIRMWARE_INCLUDE_FRPC=n" >> .config #内网穿透FRPC
-        echo "CONFIG_FIRMWARE_INCLUDE_FRPS=n" >> .config #内网穿透FRPS
-        #
-        echo "CONFIG_FIRMWARE_INCLUDE_ADBYBY=y" >> .config #adbyby plus+
-        echo "CONFIG_FIRMWARE_INCLUDE_KOOLPROXY=y" >> .config #KP广告过滤
-        #
-        echo "CONFIG_FIRMWARE_INCLUDE_SMARTDNS=n" >> .config #smartdns
-        echo "CONFIG_FIRMWARE_INCLUDE_SMARTDNSBIN=n" >> .config #smartdns二进制文件
-        echo "CONFIG_FIRMWARE_INCLUDE_ADGUARDHOME=y" >> .config
-        #
-        echo "CONFIG_FIRMWARE_INCLUDE_ALIDDNS=y" >> .config #阿里DDNS
-        echo "CONFIG_FIRMWARE_INCLUDE_CLOUDFLAREDDNS=n" >> .config #CloudFlareDDNS
-        echo "CONFIG_FIRMWARE_INCLUDE_SERIAL=n" >> .config #可以不集成
-        echo "CONFIG_FIRMWARE_INCLUDE_AUDIO=y" >> .config #可以不集成
-        echo "CONFIG_FIRMWARE_INCLUDE_TTYD=y" >> .config #可以不集成
-        #
-        echo "CONFIG_FIRMWARE_INCLUDE_CADDY=n" >> .config #在线文件管理服务
-        echo "CONFIG_FIRMWARE_INCLUDE_CADDYBIN=n" >> .config #集成caddu执行文件，此文件有13M,请注意固件大小。如果不集成，会从网上下载下来执行，不影响正常使用
-        #
-        echo "CONFIG_FIRMWARE_INCLUDE_WYY=n" >> .config #网易云解锁
-        echo "CONFIG_FIRMWARE_INCLUDE_WYYBIN=n" >> .config #网易云解锁GO版本执行文件（4M多）注意固件超大小,不集成会自动下载
-        echo "CONFIG_FIRMWARE_INCLUDE_TRANSMISSION=y" >> .config #集成远程下载
-        echo "CONFIG_FIRMWARE_INCLUDE_TRANSMISSION_WEB_CONTROL=y" >> .config #集成远程下载的配置网页
-        echo "CONFIG_FIRMWARE_INCLUDE_ARIA=y" >> .config #Aria
-        echo "CONFIG_FIRMWARE_INCLUDE_ARIA_WEB_CONTROL=y" >> .config #Aria的网页控制
-        echo "CONFIG_FIRMWARE_INCLUDE_XUPNPD=y" >> .config #去除用于 IPTV 的 XUPNP
-        echo "CONFIG_FIRMWARE_INCLUDE_ZEROTIER=y" >> .config #zerotier ~1.3M
-        #
-        echo "CONFIG_FIRMWARE_INCLUDE_OPENVPN=y" >> .config #openvpn
-        #校园网相关开始
-        echo "CONFIG_FIRMWARE_INCLUDE_MENTOHUST=n" >> .config #MENTOHUST
-        echo "CONFIG_FIRMWARE_INCLUDE_SCUTCLIENT=n" >> .config #SCUTCLIENT
-        echo "CONFIG_FIRMWARE_INCLUDE_DOGCOM=n" >> .config  #去除用于 Drcom 的工具
-        echo "CONFIG_FIRMWARE_INCLUDE_MINIEAP=n" >> .config  #去除可用于锐捷的 eap 客户端
-        echo "CONFIG_FIRMWARE_INCLUDE_NJIT_CLIENT=n" >> .config  #去除南工网络客户端
-        echo "CONFIG_FIRMWARE_INCLUDE_NAPT66=y" >> .config
+        echo "CONFIG_FIRMWARE_INCLUDE_ADBYBY=y" >> .config      #广告过滤adbyby plus+
+        echo "CONFIG_FIRMWARE_INCLUDE_KOOLPROXY=y" >> .config   #广告过滤koolproxy
+        echo "CONFIG_FIRMWARE_INCLUDE_ADGUARDHOME=y" >> .config #广告过滤adguardhome
+        #USB相关、下载软件
+        echo "CONFIG_FIRMWARE_INCLUDE_QOS=y" >> .config        ##QOS~0.2MB
+        echo "CONFIG_FIRMWARE_INCLUDE_SMBD=y" >> .config       #开启smaba和WINS服务
+        echo "CONFIG_FIRMWARE_INCLUDE_SMBD36=y" >> .config     #升级samba3为smaba3.6
+        echo "CONFIG_FIRMWARE_INCLUDE_FTPD=y" >> .config       #开启FTP服务器
+        echo "CONFIG_FIRMWARE_INCLUDE_CADDY=n" >> .config      #caddy，在线文件管理服务
+        echo "CONFIG_FIRMWARE_INCLUDE_CADDYBIN=n" >> .config   #集成caddy执行文件13M,请注意固件大小
+        echo "CONFIG_FIRMWARE_INCLUDE_TRANSMISSION=y" >> .config #transmission服务1.5MB
+        echo "CONFIG_FIRMWARE_INCLUDE_TRANSMISSION_WEB_CONTROL=y" >> .config  #transmission网页端0.8MB
+        echo "CONFIG_FIRMWARE_INCLUDE_ARIA=y" >> .config              #aria服务3.5MB
+        echo "CONFIG_FIRMWARE_INCLUDE_ARIA_WEB_CONTROL=y" >> .config  #aira网页端0.7MB
+        #DNS加速服务
+        echo "CONFIG_FIRMWARE_INCLUDE_SMARTDNS=y" >> .config     #SmartDns服务
+        echo "CONFIG_FIRMWARE_INCLUDE_SMARTDNSBIN=y" >> .config  #SmartDns执行文件 
+        echo "CONFIG_FIRMWARE_INCLUDE_DNSFORWARDER=y" >> .config #dns forwarder
+        #科学上网
+        echo "CONFIG_FIRMWARE_INCLUDE_SHADOWSOCKS=y" >> .config #SS plus+，客户端
+        echo "CONFIG_FIRMWARE_INCLUDE_MICROSOCKS=y" >> .config  #microsocks，sock5代理
+        echo "CONFIG_FIRMWARE_INCLUDE_SSSERVER=y" >> .config    #SS server，服务端
+        echo "CONFIG_FIRMWARE_INCLUDE_V2RAY=n" >> .config       #集成v2ray 执行文件
+        echo "CONFIG_FIRMWARE_INCLUDE_XRAY=y" >> .config #集成xray执行文件(5.6M左右)，可以代替v2ray，注：如果闪存太小不够还是建议使用v2ray
+        echo "CONFIG_FIRMWARE_INCLUDE_TROJAN=y" >> .config      #集成trojan执行文件
+        echo "CONFIG_FIRMWARE_INCLUDE_3PROXY=y" >> .config     #代理3proxy
+        #校园网相关
+        echo "CONFIG_FIRMWARE_INCLUDE_MENTOHUST=n" >> .config   #校园网相关 MentoHUST
+        echo "CONFIG_FIRMWARE_INCLUDE_SCUTCLIENT=n" >> .config  #校园网相关 SCUTCLIENT
+        echo "CONFIG_FIRMWARE_INCLUDE_MINIEAP=n" >> .config     #校园网相关 MiniEAP
+        echo "CONFIG_FIRMWARE_INCLUDE_NJIT_CLIENT=n" >> .config #校园网相关 NJIT_CLIENT
+        echo "CONFIG_FIRMWARE_INCLUDE_GDUT_DRCOM=n" >> .config  #校园网相关 GDUT_DRCOM
+        echo "CONFIG_FIRMWARE_INCLUDE_DOGCOM=n" >> .config      #校园网相关 DOGCOM
+        #其他服务
+        echo "CONFIG_FIRMWARE_INCLUDE_SOFTETHERVPN_SERVER=n" >> .config #softethervpn_server，不需要集成
+        echo "CONFIG_FIRMWARE_INCLUDE_SOFTETHERVPN_CLIENT=n" >> .config #softethervpn_client，不需要集成
+        echo "CONFIG_FIRMWARE_INCLUDE_SOFTETHERVPN_CMD=n" >> .config    #softethervpn_cmd，不需要集成
+        echo "CONFIG_FIRMWARE_INCLUDE_TUNSAFE=n" >> .config             #tunsafe vpn，不需要集成
+        echo "CONFIG_FIRMWARE_INCLUDE_KUMASOCKS=n" >> .config     #kumasocks,可以不集成
+        echo "CONFIG_FIRMWARE_INCLUDE_SOCAT=y" >> .config         #支持两个多协议相互通讯
+        echo "CONFIG_FIRMWARE_INCLUDE_SRELAY=n" >> .config
+        echo "CONFIG_FIRMWARE_INCLUDE_RPL2TP=n" >> .config
+        #附加模块
+        echo "CONFIG_FIRMWARE_INCLUDE_HID=y" >> .config   #包括USB-硬盘模块~0.2MB
+        echo "CONFIG_FIRMWARE_INCLUDE_CIFS=y" >> .config  #包括CIFS(SMB)客户进程守护~0.2MB
+        echo "CONFIG_FIRMWARE_INCLUDE_U2EC=y" >> .config  #包括USB以太网打印机守护进程~0.05MB
+        echo "CONFIG_FIRMWARE_INCLUDE_WINS=n" >> .config  #只包含WINS服务器~0.4mb
+        echo "CONFIG_FIRMWARE_INCLUDE_SMBD_SYSLOG=n" >> .config   #用于SMB和WINS服务器的ncludesyslog~0.3MB
+        echo "CONFIG_FIRMWARE_INCLUDE_DROPBEAR_FAST_CODE=y" >> .config #使Dropbear对称密码和散列更快~0.06mb
+        #USB电视棒服务
+        echo "CONFIG_FIRMWARE_INCLUDE_RTL_SDR=y" >> .config
+        echo "CONFIG_FIRMWARE_INCLUDE_DUMP1090=y" >> .config
+        ###
+        echo "CONFIG_FIRMWARE_INCLUDE_NVPPROXY=y" >> .config ### NVPPROXY
+        echo "CONFIG_FIRMWARE_INCLUDE_NPC=y" >> .config      ### NPC
+        echo "CONFIG_FIRMWARE_INCLUDE_MTKIAPPD=y" >> .config      ### MTKIAPPD
         #校园网相关结束
         #########################################################################################
         #自定义添加其它功能请参考源码configs/templates/目录下的config文件。按照上面的格式添加即可
